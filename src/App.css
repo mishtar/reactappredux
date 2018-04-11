@@ -1,0 +1,16 @@
+h1 {
+  margin: 2rem;
+  text-align: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}

@@ -1,0 +1,14 @@
+.post-author-image{
+    height: 36px;
+    width: 36px;
+}
+
+.post-image{
+    height: 100px;
+    width: 175px;
+}
+
+.post-row{
+    padding: 1rem;
+    margin: 1rem;
+}
