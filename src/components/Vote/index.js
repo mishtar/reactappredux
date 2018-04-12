@@ -1,29 +1,43 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { downvote_post, upvote_post } from '../../actions/actions';
 import './index.css';
 
-const Vote = ({onClickDown, onClickUp, votes}) => (
-    <div className="font-weight-bold">   
-        <a onClick={onClickUp}>   
-            <span className="fa fa-sort-up vote-glyphicon-blue" aria-hidden="true"></span>
-        </a>
-        <br/>
-        {votes}
-        <br/>  
-        <a onClick={onClickDown}>      
-            <span className="fa fa-sort-down vote-glyphicon-blue" aria-hidden="true"></span>
-        </a>
-    </div>
-);
+class Vote extends PureComponent{ 
+    render()
+    {
+        const {
+            id,
+            votes,    
+            upvote_post,
+            downvote_post
+        } = this.props;
+        return(
+            <div className="font-weight-bold">   
+                <a onClick={() => upvote_post(id)}>   
+                    <span className="fa fa-sort-up vote-glyphicon-blue" aria-hidden="true"></span>
+                </a>
+                <br/>
+                {votes}
+                <br/>  
+                <a onClick={() => downvote_post(id)}>      
+                    <span className="fa fa-sort-down vote-glyphicon-blue" aria-hidden="true"></span>
+                </a>
+            </div>
+        )
+    }
+}
 
 Vote.propTypes = {
-    onClick: PropTypes.func,
+    id: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired
 };
 
-Vote.defaultProps = {
-    onClickDown: null,
-    onClickUp: null
-}
+const mapDispatchToProps = dispatch => bindActionCreators({
+    upvote_post,
+    downvote_post
+}, dispatch);
 
-export default Vote;
+export default connect(null, mapDispatchToProps)(Vote);

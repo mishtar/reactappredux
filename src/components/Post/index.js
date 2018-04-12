@@ -5,13 +5,13 @@ import Link from '../LinkComponent';
 import Vote from '../Vote';
 import './index.css';
 
-const Post = ({description, onClickDown, onClickUp, post_image_url, title, url, votes, writer_avatar_url}) => (
+const Post = ({description, id, post_image_url, title, url, votes, writer_avatar_url}) => (
     <Row className="post-row">
         <Col xs="3">
             <img className="post-image" src={post_image_url} alt={title} />
         </Col>
         <Col xs="1">
-            <Vote onClickDown={onClickDown} onClickUp={onClickUp} votes={votes} />
+            <Vote id={id} votes={votes} />
         </Col>
         <Col xs="5">
             <Link url={url} title={title}><div>{title}</div></Link>
@@ -27,17 +27,11 @@ const Post = ({description, onClickDown, onClickUp, post_image_url, title, url, 
 
 Post.propTypes = {
     description: PropTypes.string.isRequired,
-    onClickDown: PropTypes.func,
-    onClickUp: PropTypes.func,
+    id: PropTypes.number.isRequired,
     post_image_url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
     writer_avatar_url: PropTypes.string.isRequired
 };
-
-Post.defaultProps ={
-    onClickDown: null,
-    onClickUp: null
-}
 
 export default Post;
